@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .bg-primary {
+    background: linear-gradient(90deg, #2d2aa5 0%, #2d2aa5 100%);
+  }
+}
+
+#root {
+  height: 100vh;
+}
