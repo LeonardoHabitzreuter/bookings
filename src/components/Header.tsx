@@ -1,7 +1,7 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export const Root = () => (
-  <div className="flex flex-col h-full">
+export default function Header () {
+  return (
     <header className="flex justify-center sticky top-0 z-10 p-6 bg-white">
       <div className="w-full max-w-[1320px] flex justify-between">
         <Link to="/places">
@@ -23,13 +23,5 @@ export const Root = () => (
         </Link>
       </div>
     </header>
-    <main
-      className="w-full flex-grow sm:bg-repeat-round p-4"
-      style={{ backgroundImage: "url('/booking-bg.jpg')" }}
-    >
-      <div className="max-w-[1320px] mx-auto">
-        <Outlet />
-      </div>
-    </main>
-  </div>
-);
+  )
+}

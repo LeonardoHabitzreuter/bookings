@@ -1,5 +1,5 @@
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
-import { BookingForm } from '@/components/BookingForm';
+import { BookingForm } from '../BookingForm';
 import { useUpdateBookingMutation } from '@/mutations/bookings';
 import { useBookingsQuery } from '@/queries/bookings';
 

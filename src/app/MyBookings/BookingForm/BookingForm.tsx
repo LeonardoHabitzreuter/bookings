@@ -1,5 +1,5 @@
 import Button from '@/components/ui/Button';
-import { Grid, Group, Image, Modal, Space, Text } from '@mantine/core';
+import { Grid, Group, Image, Modal } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
@@ -55,19 +55,18 @@ export const BookingForm = ({
       opened={true}
       onClose={() => onClose?.()}
       size="lg"
-      title={<Text fw={500}>Choose the dates you will stay at:</Text>}
+      title={<h3 className='font-medium'>Choose the dates you will stay at:</h3>}
     >
       <Grid data-testid="place-info" align="flex-start">
         <Grid.Col span={{ base: 12, xs: 4 }}>
           <Image src={place?.imageUrl} height={200} />
         </Grid.Col>
         <Grid.Col span={{ base: 12, xs: 8 }}>
-          <h3 className="text-xl font-semibold">{place?.address}</h3>
+          <h4 className="text-xl font-semibold">{place?.address}</h4>
           <p className="text-base mt-3">{place?.description}</p>
         </Grid.Col>
       </Grid>
-      <Space h="md" />
-      <form onSubmit={form.onSubmit(handleSubmit)}>
+      <form onSubmit={form.onSubmit(handleSubmit)} className='mt-3'>
         <DatePickerInput
           firstDayOfWeek={0}
           label="Check-in - Checkout"

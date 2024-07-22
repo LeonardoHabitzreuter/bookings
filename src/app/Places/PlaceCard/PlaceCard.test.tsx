@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { PlaceCard } from '@/components/PlaceCard';
+import { PlaceCard } from './PlaceCard';
 import { Wrapper } from '@/tests/helpers/Wrapper';
 import { generatePlace } from '@/tests/helpers/factories';
 

@@ -1,7 +1,7 @@
 import { Outlet, useLoaderData } from 'react-router-dom';
 import { Grid } from '@mantine/core';
 import { useBookingsQuery } from '@/queries/bookings';
-import { BookingCard } from '@/components/BookingCard';
+import { BookingCard } from './BookingCard';
 
 export const MyBookings = () => {
   const initialData = useLoaderData();

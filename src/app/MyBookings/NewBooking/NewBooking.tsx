@@ -1,6 +1,6 @@
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { usePlaceById } from '@/queries/places';
-import { BookingForm } from '@/components/BookingForm';
+import { BookingForm } from '../BookingForm';
 import { Place } from '@/models/Place';
 import { useBookingsQuery } from '@/queries/bookings';
 import { Booking } from '@/models/Booking';

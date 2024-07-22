@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { Wrapper } from '@/tests/helpers/Wrapper';
 import { generateBooking, generatePlace } from '@/tests/helpers/factories';
-import { BookingForm } from '@/components/BookingForm';
+import { BookingForm } from './BookingForm';
 import userEvent from '@testing-library/user-event';
 
 describe('components/BookingForm', () => {

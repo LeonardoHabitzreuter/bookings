@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { BookingCard } from '@/components/BookingCard';
+import { BookingCard } from './BookingCard';
 import { Wrapper } from '@/tests/helpers/Wrapper';
 import { generateBooking, generatePlace } from '@/tests/helpers/factories';
 
