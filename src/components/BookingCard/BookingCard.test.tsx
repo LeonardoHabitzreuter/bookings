@@ -21,14 +21,14 @@ describe('components/BookingCard', () => {
   });
 
   it('renders card with correct address', () => {
-    const place = generatePlace({ address: 'Tokyo, Japan' });
+    const place = generatePlace({ address: 'Mayfair, London' });
     const booking = generateBooking({ place });
     render(<BookingCard booking={booking} />, { wrapper: Wrapper });
     expect(screen.getByText(place.address)).toBeInTheDocument();
   });
 
   it('renders card with correct dates', () => {
-    const place = generatePlace({ address: 'Tokyo, Japan' });
+    const place = generatePlace({ address: 'Mayfair, London' });
     const booking = generateBooking({
       place,
       start: new Date(2023, 0, 1),

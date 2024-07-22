@@ -21,7 +21,7 @@ describe('components/BookingForm', () => {
 
   it('renders with the correct place info', async () => {
     const place = generatePlace({
-      address: 'Tokyo, Japan',
+      address: 'Mayfair, London',
       description: 'Some description',
     });
     const booking = generateBooking({ place });
@@ -37,7 +37,7 @@ describe('components/BookingForm', () => {
   it('shows an error message if it has overlaps with another booking', async () => {
     const user = userEvent.setup();
     const onSubmit = vi.fn();
-    const place = generatePlace({ address: 'Tokyo, Japan' });
+    const place = generatePlace({ address: 'Mayfair, London' });
     const booking = generateBooking({
       place,
       start: new Date(2023, 0, 1),
@@ -68,7 +68,7 @@ describe('components/BookingForm', () => {
   it('does not show an error message if it has no overlapping with another booking', async () => {
     const user = userEvent.setup();
     const onSubmit = vi.fn();
-    const place = generatePlace({ address: 'Tokyo, Japan' });
+    const place = generatePlace({ address: 'Mayfair, London' });
     const booking = generateBooking({
       place,
       start: new Date(2023, 0, 1),

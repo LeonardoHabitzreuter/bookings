@@ -18,7 +18,7 @@ describe('components/PlaceCard', () => {
   });
 
   it('renders card with correct address', () => {
-    const place = generatePlace({ address: 'Tokyo, Japan' });
+    const place = generatePlace({ address: 'Mayfair, London' });
     render(<PlaceCard place={place} />, { wrapper: Wrapper });
     expect(screen.getByText(place.address)).toBeInTheDocument();
   });

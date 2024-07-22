@@ -12,7 +12,7 @@ The app will run at [http://localhost:5173](http://localhost:5173).
 + React
 + ViteJS
 + Typescript
-+ Jest and React Testing Library
++ ViTest, Jest and React Testing Library
 + ESLint and Prettier
 + TailwindCSS and Mantine
 + Zod for schema validations
