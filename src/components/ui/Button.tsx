@@ -26,7 +26,8 @@ type Props = {
   type?: 'submit' | 'button';
   children: React.ReactNode;
   className?: string;
-} & VariantProps<typeof buttonVariants>;
+} & React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+& VariantProps<typeof buttonVariants>;
 
 export default function Button({
   children,

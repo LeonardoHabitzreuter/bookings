@@ -2,10 +2,11 @@ import { useLoaderData } from 'react-router-dom';
 import { Grid } from '@mantine/core';
 import { PlaceCard } from './PlaceCard';
 import { usePlacesQuery } from '@/queries/places';
+import { Place } from '@/models/Place';
 
 export const Places = () => {
-  const initialData = useLoaderData();
-  const { data: places } = usePlacesQuery({ initialData });
+  const [initialPlacesData] = useLoaderData() as [Place[]];
+  const { data: places } = usePlacesQuery({ initialData: initialPlacesData });
 
   return (
     <section

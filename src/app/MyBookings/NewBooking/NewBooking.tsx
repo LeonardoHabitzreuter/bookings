@@ -1,21 +1,18 @@
-import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
-import { usePlaceById } from '@/queries/places';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { BookingForm } from '../BookingForm';
 import { Place } from '@/models/Place';
 import { useBookingsQuery } from '@/queries/bookings';
 import { Booking } from '@/models/Booking';
 import { useCreateBookingMutation } from '@/mutations/bookings';
 
-export const NewBooking = () => {
+type Props = {
+  onClose: () => void
+  place: Place
+}
+
+export const NewBooking = ({ place, onClose }: Props) => {
   const navigate = useNavigate();
-  const { placeId } = useParams();
-  const [initialPlaceData, initialBookingsData] = useLoaderData() as [
-    Place,
-    Booking[],
-  ];
-  const { data: place } = usePlaceById(placeId!, {
-    initialData: initialPlaceData,
-  });
+  const [, initialBookingsData] = useLoaderData() as [Place, Booking[]];
   const { data: bookings } = useBookingsQuery({
     initialData: initialBookingsData,
   });
@@ -26,7 +23,7 @@ export const NewBooking = () => {
     <BookingForm
       booking={booking}
       otherBookings={bookings ?? []}
-      onClose={() => navigate('/bookings', { replace: true })}
+      onClose={onClose}
       onSubmit={([start, end]) => {
         createBooking.mutate({ ...booking, start, end });
         navigate('/bookings', { replace: true });
