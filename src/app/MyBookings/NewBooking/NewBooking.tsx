@@ -1,8 +1,6 @@
-import { useNavigate } from 'react-router-dom';
 import { BookingForm } from '../BookingForm';
 import { Place } from '@/models/Place';
-import { useBookingsQuery } from '@/queries/bookings';
-import { useCreateBookingMutation } from '@/mutations/bookings';
+import useNewBooking from './useNewBooking';
 
 type Props = {
   onClose: () => void
@@ -10,20 +8,14 @@ type Props = {
 }
 
 export const NewBooking = ({ place, onClose }: Props) => {
-  const navigate = useNavigate();
-  const { data: bookings } = useBookingsQuery();
-  const booking = { place: place as Place };
-  const createBooking = useCreateBookingMutation();
+  const { allBookings, onSubmit } = useNewBooking(place);
 
   return (
     <BookingForm
-      booking={booking}
-      otherBookings={bookings ?? []}
+      booking={{ place }}
+      otherBookings={allBookings}
       onClose={onClose}
-      onSubmit={([start, end]) => {
-        createBooking.mutate({ ...booking, start, end });
-        navigate('/bookings', { replace: true });
-      }}
+      onSubmit={onSubmit}
     />
   );
 };
