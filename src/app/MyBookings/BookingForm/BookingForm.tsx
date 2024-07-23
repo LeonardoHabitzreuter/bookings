@@ -42,7 +42,13 @@ export const BookingForm = ({
           {...form.getInputProps('dates')}
         />
 
-          <Button className='w-full sm:w-80' type="submit">{submitLabel ?? 'Book this place'}</Button>
+          <Button
+            type="submit"
+            disabled={!form.isValid()}
+            className='w-full sm:w-80'
+          >
+            {submitLabel ?? 'Book this place'}
+          </Button>
       </form>
     </Modal>
   );

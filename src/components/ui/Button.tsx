@@ -2,7 +2,7 @@ import { cn } from '@/utils/styles';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'rounded-md text-sm sm:text-base font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 rounded-3xl',
+  'rounded-md text-sm sm:text-base font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 rounded-3xl disabled:text-neutral-400',
   {
     variants: {
       variant: {
@@ -19,7 +19,7 @@ const buttonVariants = cva(
       variant: 'default',
       size: 'default',
     },
-  },
+  }
 );
 
 type Props = {
@@ -35,12 +35,15 @@ export default function Button({
   size,
   variant,
   type = 'button',
+  disabled,
   ...props
 }: Props) {
   return (
     <button
       type={type}
+      disabled={disabled}
       className={cn(buttonVariants({ size, variant, className }))}
+      style={{ ...props.style, background: disabled ? '#DCDCDC': undefined }}
       {...props}
     >
       {children}
