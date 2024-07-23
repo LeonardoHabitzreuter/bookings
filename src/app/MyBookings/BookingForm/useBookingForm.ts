@@ -37,5 +37,6 @@ export default function useBookingForm (
     onSubmit([firstDate, secondDate]);
   });
 
-  return { form, handleSubmit }
+  const disableSubmit = (!!form.errors.dates || !form.isDirty())
+  return { form, handleSubmit, disableSubmit }
 }

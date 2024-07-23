@@ -20,7 +20,7 @@ export const BookingForm = ({
   onSubmit,
 }: BookingFormProps) => {
   const { place } = booking;
-  const { form, handleSubmit } = useBookingForm(booking, otherBookings, onSubmit)
+  const { form, handleSubmit, disableSubmit } = useBookingForm(booking, otherBookings, onSubmit)
 
   return (
     <Modal
@@ -44,7 +44,7 @@ export const BookingForm = ({
 
           <Button
             type="submit"
-            disabled={!form.isValid()}
+            disabled={disableSubmit}
             className='w-full sm:w-80'
           >
             {submitLabel ?? 'Book this place'}
