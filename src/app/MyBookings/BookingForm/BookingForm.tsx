@@ -1,5 +1,5 @@
 import Button from '@/components/ui/Button';
-import { Grid, Group, Image, Modal } from '@mantine/core';
+import { Modal } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
 import { useForm, zodResolver } from '@mantine/form';
 import { z } from 'zod';
@@ -25,7 +25,7 @@ interface BookingFormProps {
   booking: Partial<Booking>;
   otherBookings: Booking[];
   submitLabel?: string;
-  onClose?: () => void;
+  onClose: () => void;
   onSubmit: (dates: [Date, Date]) => void;
 }
 
@@ -53,33 +53,24 @@ export const BookingForm = ({
   return (
     <Modal
       opened={true}
-      onClose={() => onClose?.()}
-      size="lg"
-      title={<h3 className='font-medium'>Choose the dates you will stay at:</h3>}
+      onClose={onClose}
+      styles={{ content: { borderRadius: '12px' } }}
+      classNames={{ body: 'flex flex-col items-center px-10 space-y-3 text-center' }}
     >
-      <Grid data-testid="place-info" align="flex-start">
-        <Grid.Col span={{ base: 12, xs: 4 }}>
-          <Image src={place?.imageUrl} height={200} />
-        </Grid.Col>
-        <Grid.Col span={{ base: 12, xs: 8 }}>
-          <h4 className="text-xl font-semibold">{place?.address}</h4>
-          <p className="text-base mt-3">{place?.description}</p>
-        </Grid.Col>
-      </Grid>
-      <form onSubmit={form.onSubmit(handleSubmit)} className='mt-3'>
+      <img src={place?.imageUrl} className='w-full rounded-2xl' />
+      <h4 data-testid='place-address' className="text-xl font-semibold">{place?.address}</h4>
+      <p data-testid='place-description' className="text-base">{place?.description}</p>
+      <form data-testid='booking-form' onSubmit={form.onSubmit(handleSubmit)} className='w-full space-y-3'>
         <DatePickerInput
           firstDayOfWeek={0}
-          label="Check-in - Checkout"
           minDate={new Date()}
           required
-          placeholder="Check-in - Checkout"
+          placeholder="Check in - Check out"
           type="range"
           {...form.getInputProps('dates')}
         />
 
-        <Group justify="flex-end" mt="md">
-          <Button type="submit">{submitLabel ?? 'Book this place'}</Button>
-        </Group>
+          <Button className='w-full sm:w-80' type="submit">{submitLabel ?? 'Book this place'}</Button>
       </form>
     </Modal>
   );

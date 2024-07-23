@@ -56,13 +56,13 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
       <Group justify="space-between">
         <Stack gap={0}>
           <Text size="xs" fw={500}>
-            Check-in
+            Check in
           </Text>
           <Text size="sm">{dayjs(booking.start).format('MMMM D, YYYY')}</Text>
         </Stack>
         <Stack gap={0}>
           <Text size="xs" fw={500}>
-            Checkout
+            Check out
           </Text>
           <Text size="sm">{dayjs(booking.end).format('MMMM D, YYYY')}</Text>
         </Stack>

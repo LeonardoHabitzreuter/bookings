@@ -18,7 +18,7 @@ export const Places = () => {
         backdropFilter: 'blur(74.56938171386719px)',
       }}
     >
-      <Grid data-testid="places-content" p="md">
+      <Grid data-testid="places-content">
         {places?.map((place) => (
           <Grid.Col key={place.id} span={{ base: 12, sm: 6, xl: 4 }}>
             <PlaceCard place={place} />

@@ -6,6 +6,9 @@
   .bg-primary {
     background: linear-gradient(90deg, #2d2aa5 0%, #2d2aa5 100%);
   }
+  .bg-primary-600 {
+    background: linear-gradient(90deg, #222181 0%, #222181 100%);
+  }
 }
 
 #root {

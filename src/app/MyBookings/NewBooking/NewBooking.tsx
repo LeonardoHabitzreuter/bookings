@@ -1,8 +1,7 @@
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BookingForm } from '../BookingForm';
 import { Place } from '@/models/Place';
 import { useBookingsQuery } from '@/queries/bookings';
-import { Booking } from '@/models/Booking';
 import { useCreateBookingMutation } from '@/mutations/bookings';
 
 type Props = {
@@ -12,10 +11,7 @@ type Props = {
 
 export const NewBooking = ({ place, onClose }: Props) => {
   const navigate = useNavigate();
-  const [, initialBookingsData] = useLoaderData() as [Place, Booking[]];
-  const { data: bookings } = useBookingsQuery({
-    initialData: initialBookingsData,
-  });
+  const { data: bookings } = useBookingsQuery();
   const booking = { place: place as Place };
   const createBooking = useCreateBookingMutation();
 

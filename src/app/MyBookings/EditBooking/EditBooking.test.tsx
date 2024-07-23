@@ -6,15 +6,16 @@ import { generateBooking, generatePlace } from '@/tests/helpers/factories';
 import { mockSystemDate } from '@/tests/helpers/date';
 
 describe('routes/MyBookings/EditBooking', () => {
+  const place = generatePlace({ address: 'Mayfair, London' })
   mockSystemDate(new Date(2023, 5, 1));
 
   beforeEach(() => {
     addBookingOnServer(
       generateBooking({
+        place,
         id: '1',
         start: new Date(2023, 5, 8),
         end: new Date(2023, 5, 15),
-        place: generatePlace({ address: 'Recife, Brazil' }),
       }),
     );
   });
@@ -23,15 +24,16 @@ describe('routes/MyBookings/EditBooking', () => {
     renderRoute({ path: '/bookings/edit/1' });
     const modal = await screen.findByRole('dialog');
     expect(modal).toBeInTheDocument();
-    expect(modal).toHaveTextContent(/Choose the dates you will stay at:/);
+    expect(modal).toHaveTextContent(/Mayfair, London/);
   });
 
   it('renders modal with the correct place info', async () => {
     renderRoute({ path: '/bookings/edit/1' });
     const modal = await screen.findByRole('dialog');
-    const placeInfo = within(modal).getByTestId('place-info');
-    expect(placeInfo).toHaveTextContent(/Recife, Brazil/);
-    expect(placeInfo).toHaveTextContent(/Lorem ipsum/);
+    const address = within(modal).getByTestId('place-address');
+    const description = within(modal).getByTestId('place-description');
+    expect(address).toHaveTextContent(place.address);
+    expect(description).toHaveTextContent(place.description);
   });
 
   it('should correctly edit a booking', async () => {

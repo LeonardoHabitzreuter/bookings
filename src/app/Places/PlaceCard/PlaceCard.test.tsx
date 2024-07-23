@@ -31,7 +31,7 @@ describe('components/PlaceCard', () => {
 
   it('renders card with book place button', () => {
     render(<PlaceCard place={generatePlace()} />, { wrapper: Wrapper });
-    const button = screen.getByRole('link', { name: /Book/ });
+    const button = screen.getByRole('button', { name: /Book/ });
     expect(button).toBeInTheDocument();
   });
 });

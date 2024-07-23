@@ -15,12 +15,16 @@ describe('routes/Places', () => {
     expect(cards).toHaveLength(4);
   });
 
-  it('redirects to New Booking page', async () => {
+  it('opens new booking modal', async () => {
     const user = userEvent.setup();
     renderRoute({ path: '/places' });
+
     await screen.findByTestId('places-content');
     const firstCard = screen.getAllByTestId('place-card')[0];
-    await user.click(within(firstCard).getByRole('link'));
-    expect(await screen.findByRole('dialog')).toBeInTheDocument();
+    const bookButton = within(firstCard).getByRole('button', { name: /Book/ })
+    await user.click(bookButton);
+    const modal = screen.getByRole('dialog')
+    
+    expect(await within(modal).findByTestId('booking-form')).toBeInTheDocument();
   });
 });

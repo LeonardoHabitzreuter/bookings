@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { Wrapper } from '@/tests/helpers/Wrapper';
 import { generateBooking, generatePlace } from '@/tests/helpers/factories';
 import { BookingForm } from './BookingForm';
@@ -6,17 +6,21 @@ import userEvent from '@testing-library/user-event';
 
 describe('components/BookingForm', () => {
   it('renders form as expected', async () => {
+    const booking = generateBooking()
+
     render(
       <BookingForm
-        booking={generateBooking()}
+        onClose={() => {}}
+        booking={booking}
         otherBookings={[]}
         onSubmit={() => {}}
+        submitLabel='Book button'
       />,
-      { wrapper: Wrapper },
+      { wrapper: Wrapper }
     );
-    const modal = await screen.findByRole('dialog');
-    expect(modal).toBeInTheDocument();
-    expect(modal).toHaveTextContent(/Choose the dates you will stay at:/);
+
+    const form = screen.getByTestId('booking-form');
+    expect(await within(form).findByRole('button', { name: /Book button/ })).toBeInTheDocument();
   });
 
   it('renders with the correct place info', async () => {
@@ -26,12 +30,18 @@ describe('components/BookingForm', () => {
     });
     const booking = generateBooking({ place });
     render(
-      <BookingForm booking={booking} otherBookings={[]} onSubmit={() => {}} />,
+      <BookingForm
+        onClose={() => {}}
+        booking={booking}
+        otherBookings={[]}
+        onSubmit={() => {}}
+      />,
       { wrapper: Wrapper },
     );
-    const placeInfo = await screen.findByTestId('place-info');
-    expect(placeInfo).toHaveTextContent(place.address);
-    expect(placeInfo).toHaveTextContent(place.description);
+    const address = screen.getByTestId('place-address');
+    const description = screen.getByTestId('place-description');
+    expect(address).toHaveTextContent(booking.place.address);
+    expect(description).toHaveTextContent(booking.place.description);
   });
 
   it('shows an error message if it has overlaps with another booking', async () => {
@@ -52,6 +62,7 @@ describe('components/BookingForm', () => {
     ];
     render(
       <BookingForm
+        onClose={() => {}}
         booking={booking}
         otherBookings={otherBookings}
         onSubmit={onSubmit}
@@ -60,7 +71,7 @@ describe('components/BookingForm', () => {
     );
     await user.click(screen.getByRole('button', { name: /Book this place/ }));
     expect(
-      screen.getByText(/There is an overlap with another Booking/),
+      await screen.findByText(/There is an overlap with another Booking/),
     ).toBeInTheDocument();
     expect(onSubmit).not.toHaveBeenCalled();
   });
@@ -83,6 +94,7 @@ describe('components/BookingForm', () => {
     ];
     render(
       <BookingForm
+        onClose={() => {}}
         booking={booking}
         otherBookings={otherBookings}
         onSubmit={onSubmit}

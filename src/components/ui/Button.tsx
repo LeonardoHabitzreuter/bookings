@@ -2,11 +2,11 @@ import { cn } from '@/utils/styles';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const buttonVariants = cva(
-  'rounded-md text-base font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 rounded-lg',
+  'rounded-md text-sm sm:text-base font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 rounded-3xl',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-white',
+        default: 'bg-primary text-white hover:bg-primary-600',
         destructive: 'bg-red-500 text-zinc-50 hover:bg-red-500/90',
       },
       size: {

@@ -18,7 +18,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
         data-testid="place-card"
         shadow="sm"
         padding="lg"
-        radius="md"
+        radius="lg"
         withBorder
       >
         <Card.Section>
@@ -31,7 +31,12 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
         <Text c="white" fw={300} lineClamp={2} title={place.description}>
           {place.description}
         </Text>
-        <Button size="lg" className="w-full mt-2" onClick={() => setOpenForm(true)}>
+        <Button
+          data-testid='book-button'
+          size="lg"
+          className="w-full mt-2"
+          onClick={() => setOpenForm(true)}
+        >
           Book
         </Button>
       </Card>
