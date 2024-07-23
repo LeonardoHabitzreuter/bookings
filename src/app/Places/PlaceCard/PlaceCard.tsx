@@ -12,7 +12,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
   return (
     <>
       {openForm && <NewBooking place={place} onClose={() => setOpenForm(false)} />}
-      <Card data-testid="place-card">
+      <Card data-testid="place-card" className='max-w-[400px]'>
         <Card.Image src={place.imageUrl} alt={place.address} />
         <Card.Body>
           <span className="text-base font-semibold text-white mt-3">
