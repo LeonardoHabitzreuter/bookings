@@ -1,6 +1,6 @@
 import { Booking } from '@/models/Booking';
 import { Place } from '@/models/Place';
-import { RecursivePartial } from '@/utils/type';
+import { RecursivePartial } from '@/utils/types';
 
 const baseUrl =
   import.meta.env.MODE === 'test' ? 'http://localhost:5173/api/' : '/api/';

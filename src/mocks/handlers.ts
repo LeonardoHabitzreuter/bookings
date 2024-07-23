@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { Booking } from '@/models/Booking';
 import { Place } from '@/models/Place';
-import { Optional } from '@/utils/type';
+import { Optional } from '@/utils/types';
 
 const allBookings = new Map<string, Booking>();
 

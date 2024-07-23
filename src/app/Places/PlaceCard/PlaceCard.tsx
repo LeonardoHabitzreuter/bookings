@@ -1,4 +1,4 @@
-import { Card, Image, Space, Text } from '@mantine/core';
+import { Card } from '@mantine/core';
 import { Place } from '@/models/Place';
 import Button from '@/components/ui/Button';
 import { NewBooking } from '@/app/MyBookings/NewBooking';
@@ -22,15 +22,14 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
         withBorder
       >
         <Card.Section>
-          <Image src={place.imageUrl} height={160} alt={place.address} />
+          <img className='w-full h-48' src={place.imageUrl} alt={place.address} />
         </Card.Section>
-        <Space h="sm" />
-        <span className="text-base font-semibold text-white">
+        <span className="text-base font-semibold text-white mt-3">
           {place.address}
         </span>
-        <Text c="white" fw={300} lineClamp={2} title={place.description}>
+        <p className='text-white line-clamp-2 font-light' title={place.description}>
           {place.description}
-        </Text>
+        </p>
         <Button
           data-testid='book-button'
           size="lg"

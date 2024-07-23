@@ -24,7 +24,8 @@ export const BookingForm = ({
 
   return (
     <Modal
-      opened={true}
+      centered
+      opened
       onClose={onClose}
       styles={{ content: { borderRadius: '12px' } }}
       classNames={{ body: 'flex flex-col items-center px-10 space-y-3 text-center' }}

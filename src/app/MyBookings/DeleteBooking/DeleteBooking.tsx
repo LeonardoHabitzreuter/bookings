@@ -1,38 +1,25 @@
-import { useLoaderData, useNavigate } from 'react-router-dom';
-import { Group, Modal, Text } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { Booking } from '@/models/Booking';
-import { useDeleteBookingMutation } from '@/mutations/bookings';
+import { Modal } from '@mantine/core';
 import Button from '@/components/ui/Button';
+import useDeleteBooking from './useDeleteBooking';
 
 export const DeleteBooking = () => {
-  const navigate = useNavigate();
-  const booking = useLoaderData() as Booking;
-  const form = useForm();
-  const deleteBooking = useDeleteBookingMutation();
-
-  const handleSubmit = () => {
-    deleteBooking.mutate(booking);
-    navigate('/bookings', { replace: true });
-  };
+  const { handleSubmit, onClose, booking } = useDeleteBooking()  
 
   return (
     <Modal
-      opened={true}
-      onClose={() => navigate('/bookings', { replace: true })}
+      opened
+      onClose={onClose}
       size="md"
-      title={<Text fw={500}>Delete Booking</Text>}
+      title={<span className='text-lg font-medium'>Delete Booking</span>}
     >
-      <Text>
+      <p className='text-base font-normal'>
         Are you sure you want to delete your reservation at{' '}
         <strong>{booking.place.address}</strong>?
-      </Text>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Group justify="flex-end" mt="md">
-          <Button variant="destructive" type="submit">
-            Delete Booking
-          </Button>
-        </Group>
+      </p>
+      <form onSubmit={handleSubmit} className='flex justify-end mt-3'>
+        <Button variant="destructive" type="submit" className='w-full sm:w-auto'>
+          Delete Booking
+        </Button>
       </form>
     </Modal>
   );
