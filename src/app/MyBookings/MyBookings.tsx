@@ -1,7 +1,7 @@
 import { Outlet, useLoaderData } from 'react-router-dom';
-import { Grid } from '@mantine/core';
 import { useBookingsQuery } from '@/queries/bookings';
 import { BookingCard } from './BookingCard';
+import { ListContainer } from '@/components/ui';
 
 export const MyBookings = () => {
   const initialData = useLoaderData();
@@ -9,14 +9,10 @@ export const MyBookings = () => {
 
   return (
     <>
-      <Grid data-testid="bookings-content" p="md">
-        {bookings?.map((booking) => (
-          <Grid.Col key={booking.id} span={{ base: 12, sm: 6, md: 4, lg: 3 }}>
-            <BookingCard booking={booking} />
-          </Grid.Col>
-        ))}
-      </Grid>
       <Outlet />
+      <ListContainer data-testid="bookings-content">
+        {bookings?.map((booking) => <BookingCard key={booking.id} booking={booking} />)}
+      </ListContainer>
     </>
   );
 };

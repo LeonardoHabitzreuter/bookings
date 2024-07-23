@@ -31,12 +31,13 @@ export default function useBookingForm (
   });
 
   const handleSubmit = form.onSubmit(({ dates }: { dates: (Date | undefined)[] }) => {
-    const [firstDate, secondDate] = dates;
-    if (!firstDate || !secondDate) throw new Error('Unreachable code');
+    const [checkIn, checkOut] = dates;
+    if (!checkIn || !checkOut) throw new Error('Unreachable code');
 
-    onSubmit([firstDate, secondDate]);
+    onSubmit([checkIn, checkOut]);
   });
 
-  const disableSubmit = (!!form.errors.dates || !form.isDirty())
+  const [checkIn, checkOut] = form.values.dates
+  const disableSubmit = (!checkIn || !checkOut || !!form.errors.dates)
   return { form, handleSubmit, disableSubmit }
 }

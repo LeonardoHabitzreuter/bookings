@@ -9,10 +9,8 @@ export const Places = () => {
   const { data: places } = usePlacesQuery({ initialData: initialPlacesData });
 
   return (
-    <ListContainer>
-      {places?.map((place) => (
-        <PlaceCard key={place.id} place={place} />
-      ))}
+    <ListContainer data-testid="places-content">
+      {places?.map((place) => <PlaceCard key={place.id} place={place} />)}
     </ListContainer>
   );
 };
