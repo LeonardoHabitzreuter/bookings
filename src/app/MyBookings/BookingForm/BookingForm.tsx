@@ -1,5 +1,4 @@
-import Button from '@/components/ui/Button';
-import { Modal } from '@mantine/core';
+import { Button, Modal } from '@/components/ui';
 import { DatePickerInput } from '@mantine/dates';
 import { Booking } from '@/models/Booking';
 import useBookingForm from './useBookingForm';

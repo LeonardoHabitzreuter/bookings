@@ -1,9 +1,8 @@
-import { Modal } from '@mantine/core';
-import Button from '@/components/ui/Button';
+import { Button, Modal } from '@/components/ui';
 import useDeleteBooking from './useDeleteBooking';
 
 export const DeleteBooking = () => {
-  const { handleSubmit, onClose, booking } = useDeleteBooking()  
+  const { handleSubmit, onClose, booking } = useDeleteBooking()
 
   return (
     <Modal
