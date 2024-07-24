@@ -1,16 +1,8 @@
 import { Link } from 'react-router-dom';
-import {
-  ActionIcon,
-  Card,
-  Group,
-  Image,
-  Space,
-  Stack,
-  Text,
-} from '@mantine/core';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 import dayjs from 'dayjs';
 import { Booking } from '@/models/Booking';
+import { Card } from '@/components/ui'
 
 interface BookingCardProps {
   booking: Booking;
@@ -20,53 +12,34 @@ export const BookingCard = ({ booking }: BookingCardProps) => {
   const { place } = booking;
 
   return (
-    <Card
-      data-testid="booking-card"
-      shadow="sm"
-      padding="lg"
-      radius="md"
-      withBorder
-    >
-      <Card.Section>
-        <Group pos="absolute" right={0} mr="sm" mt="sm" gap="xs">
-          <ActionIcon
-            aria-label="Edit"
-            radius="lg"
-            variant="white"
-            component={Link}
-            to={`/bookings/edit/${booking.id}`}
-          >
+    <>
+      <Card data-testid="booking-card" className='max-w-[400px]'>
+      <Card.Image src={place.imageUrl} alt={place.address}>
+        <div className='flex absolute right-0 mr-3 mt-3 gap-2'>
+          <Link aria-label="Edit" to={`/bookings/edit/${booking.id}`} className='bg-white rounded-full p-1 text-blue-600'>
             <IconPencil size={20} />
-          </ActionIcon>
-          <ActionIcon
-            aria-label="Delete"
-            radius="lg"
-            variant="white"
-            component={Link}
-            to={`/bookings/delete/${booking.id}`}
-          >
+          </Link>
+          <Link aria-label="Delete" to={`/bookings/delete/${booking.id}`} className='bg-white rounded-full p-1 text-red-600'>
             <IconTrash size={20} />
-          </ActionIcon>
-        </Group>
-        <Image src={place.imageUrl} height={160} alt={place.address} />
-      </Card.Section>
-      <Space h="sm" />
-      <Text fw={500}>{place.address}</Text>
-      <Space h="sm" />
-      <Group justify="space-between">
-        <Stack gap={0}>
-          <Text size="xs" fw={500}>
-            Check in
-          </Text>
-          <Text size="sm">{dayjs(booking.start).format('MMMM D, YYYY')}</Text>
-        </Stack>
-        <Stack gap={0}>
-          <Text size="xs" fw={500}>
-            Check out
-          </Text>
-          <Text size="sm">{dayjs(booking.end).format('MMMM D, YYYY')}</Text>
-        </Stack>
-      </Group>
-    </Card>
+          </Link>
+        </div>
+        </Card.Image>
+        <Card.Body>
+          <span className="text-base font-semibold text-white mt-3">
+            {place.address}
+          </span>
+          <div className='flex justify-between text-white font-normal text-sm'>
+            <div>
+              <p className='font-medium'>Check in</p>
+              <p>{dayjs(booking.start).format('MMMM D, YYYY')}</p>
+            </div>
+            <div>
+              <p className='font-medium'>Check out</p>
+              <p>{dayjs(booking.end).format('MMMM D, YYYY')}</p>
+            </div>
+          </div>
+        </Card.Body>
+      </Card>
+    </>
   );
 };

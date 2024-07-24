@@ -1,7 +1,10 @@
 import { cn } from "@/utils/styles";
 
-const CardImage = ({ className, ...props }: React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => (
-  <img className={cn('w-full h-48 rounded-t-2xl', className)} {...props} />
+const CardImage = ({ className, children, ...props }: React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => (
+  <div className="relative">
+    {children}
+    <img className={cn('w-full h-48 rounded-t-2xl', className)} {...props} />
+  </div>
 )
 
 const CardBody = ({ className, ...props }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => (
